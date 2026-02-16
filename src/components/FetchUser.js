@@ -1,31 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-function FetchUser() {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+function FetchUsers() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users/1')
-            .then((res) => res.json())
-            .then((data) => {
-                setUser(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false);
-            });
-    }, []);
-    if (loading) return <p>Loading users...</p>;
-    if (error) return <p>Error: {error}</p>;
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data);
+        setLoading(false);
+      });
+  }, []);
 
-    return (
-        <ul>
-            {user.map(user => (
-                <li key={user.name}>{user.email}</li>
-            ))}
-        </ul>
-    )
+  if (loading) return <p>Loading users...</p>;
+
+  return (
+    <ul>
+      {users.map(user => (
+        <li key={user.id}>
+          {user.name} ({user.email})
+        </li>
+      ))}
+    </ul>
+  );
 }
-export default FetchUser;
+
+export default FetchUsers;
