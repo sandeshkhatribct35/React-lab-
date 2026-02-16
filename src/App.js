@@ -107,6 +107,8 @@ function App() {
           <Route path="/user/:userId" element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
+    
+
 
     </div>
   );
