@@ -17,3 +17,4 @@ function LoginStatus() {
 
 
 }
+export default LoginStatus;
