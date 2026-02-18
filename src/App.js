@@ -1,3 +1,4 @@
+// src/App.js
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -16,11 +17,11 @@ import Card from "./components/Card";
 import Grandparent from "./components/Grandparent";
 
 function App() {
-
+  // ✅ Laptops data with single image for all
   const laptops = [
-    { name: "MacBook Air", brand: "Apple", price: 999 },
-    { name: "XPS 13", brand: "Dell", price: 1099 },
-    { name: "ThinkPad X1", brand: "Lenovo", price: 1299 },
+    { name: "MacBook Air", brand: "Apple", price: 999, image: "/imagy.jpeg" },
+    { name: "XPS 13", brand: "Dell", price: 1099, image: "/imagy.jpeg" },
+    { name: "ThinkPad X1", brand: "Lenovo", price: 1299, image: "/imagy.jpeg" },
   ];
 
   return (
@@ -29,9 +30,11 @@ function App() {
 
       {/* 1. Product Cards */}
       <h2>1. Product Cards</h2>
-      {laptops.map((laptop, index) => (
-        <ProductCard key={index} laptop={laptop} />
-      ))}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {laptops.map((laptop, index) => (
+          <ProductCard key={index} laptop={laptop} />
+        ))}
+      </div>
 
       <hr />
 
@@ -107,9 +110,6 @@ function App() {
           <Route path="/user/:userId" element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
-    
-
-
     </div>
   );
 }
